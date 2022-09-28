@@ -1,0 +1,10 @@
+.header {
+    padding: .63rem 1.25rem;
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+}

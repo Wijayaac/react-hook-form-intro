@@ -1,0 +1,39 @@
+.wrapper {
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.inputWrapper {
+    position: relative;
+    margin-bottom: 1.25rem;
+    margin-top: 1.875rem;
+}
+
+.inputWrapper input,
+.inputWrapper textarea {
+    width: 100%;
+    padding: 0.625rem 1.25rem;
+    margin-top: 0.3125rem;
+}
+
+.inputWrapper textarea {
+    height: 8rem;
+}
+
+
+.inputWrapper label {
+    display: block;
+}
+
+.errorLabel {
+    color: var(--red);
+}
+
+.submitBtn {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    background-color: transparent;
+    border: 1px solid black;
+    cursor: pointer;
+}
