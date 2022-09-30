@@ -1,23 +1,17 @@
 import { useForm } from "react-hook-form"
-import axios from "axios"
 
 import style from './form.module.css'
 import Loader from "../Loader"
 
-const API_URL = process.env.REACT_APP_API_URL
+import { AddHandler } from "./Form.handler"
 
 const Form = () => {
 
     const { register, handleSubmit, reset, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm()
-    const onSubmit = async data => {
-        try {
-            await axios.post(`${API_URL}/students`, data)
-            reset()
-        } catch (e) {
-            console.log(e)
-        }
-    }
 
+    const onSubmit = data => {
+        AddHandler(data)
+    }
     return (
         <>
             <div className={`${style.wrapper} ${isSubmitting ? 'loading' : ''} ${isSubmitSuccessful ? 'success' : ''}`}>
@@ -26,21 +20,21 @@ const Form = () => {
                 <form>
                     <div className={style.inputWrapper}>
                         <label htmlFor="name">Input Name</label>
-                        <input type="text" id='name' {...register('name', { required: 'Please input your name' })} />
-                        {errors.name && <span className={style.errorLabel}>{errors.name.message}</span>}
+                        <input type="text" aria-label="name" id='name' {...register('name', { required: 'required field' })} />
+                        {errors.name && <span data-testid='errorName' className={style.errorLabel}>{errors.name.message}</span>}
                     </div>
                     <div className={style.inputWrapper}>
                         <label htmlFor="age">Age</label>
-                        <input type="number" id='age' {...register('age', { required: 'Please add your age' })} />
-                        {errors.age && <span className={style.errorLabel}>{errors.age.message}</span>}
+                        <input type="number" id='age' aria-label="age" {...register('age', { required: 'required field' })} />
+                        {errors.age && <span data-testid='errorAge' className={style.errorLabel}>{errors.age.message}</span>}
                     </div>
                     <div className={style.inputWrapper}>
                         <label htmlFor="description">Short bio</label>
                         <textarea
-                            id='description' {...register('description', { required: 'Please write about yourself' })} />
-                        {errors.description && <span className={style.errorLabel}>{errors.description.message}</span>}
+                            id='description' {...register('description', { required: 'required field' })} aria-label="description" />
+                        {errors.description && <span data-testid='errorDescription' className={style.errorLabel}>{errors.description.message}</span>}
                     </div>
-                    <button type='button' className={style.submitBtn} onClick={handleSubmit(onSubmit)}>Submit</button>
+                    <button type='button' aria-label="addStudent" className={style.submitBtn} onClick={handleSubmit(onSubmit)}>Submit</button>
                 </form>
             </div>
         </>
