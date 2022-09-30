@@ -3,6 +3,11 @@
   margin: 0 auto;
 }
 
+.home-page {
+  position: relative;
+  min-height: 400px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
