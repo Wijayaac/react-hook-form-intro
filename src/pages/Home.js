@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 import StudentCard from '../components/Cards/StudentCard'
@@ -11,7 +10,8 @@ function Home () {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        getStudents(setStudents)
+        setIsLoading(true)
+        getStudents(setStudents, setIsLoading)
     }, [students.length])
 
     return (

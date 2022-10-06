@@ -7,7 +7,7 @@ import { AddHandler } from "./Form.handler"
 
 const Form = () => {
 
-    const { register, handleSubmit, reset, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm()
+    const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm()
 
     const onSubmit = data => {
         AddHandler(data)

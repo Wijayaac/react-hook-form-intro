@@ -12,6 +12,7 @@ describe('StudentListsHandler', () => {
     describe('#getStudentLists', () => {
         it('should call axios.get with correct url and call setStudent param with response data when invoked', async () => {
             const mockSetStudentList = jest.fn()
+            const mockSetIsloading = jest.fn()
             const data = [{
                 "name": "Wijaya",
                 "age": "21",
@@ -20,10 +21,11 @@ describe('StudentListsHandler', () => {
             }]
             axios.get.mockResolvedValue({ data })
 
-            await getStudents(mockSetStudentList)
+            await getStudents(mockSetStudentList, mockSetIsloading)
 
             expect(axios.get).toBeCalledWith(`${API_URL}/students`)
             expect(mockSetStudentList).toBeCalledWith(data)
+            expect(mockSetIsloading).toBeCalledWith(false)
         })
     })
 })
