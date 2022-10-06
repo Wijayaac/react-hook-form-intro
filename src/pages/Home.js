@@ -1,28 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+
 import StudentCard from '../components/Cards/StudentCard'
 import Loader from '../components/Loader'
+import { getStudents } from './StudentLists.handler'
 
-const API_URL = process.env.REACT_APP_API_URL
 
 function Home () {
     const [students, setStudents] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        setIsLoading(true)
-        const getStudents = async () => {
-            try {
-                let { data } = await axios.get(`${API_URL}/students`)
-                setStudents(data)
-                setIsLoading(false)
-
-            } catch (error) {
-                setIsLoading(false)
-                console.log(error)
-            }
-        }
-        getStudents()
+        getStudents(setStudents)
     }, [students.length])
 
     return (
